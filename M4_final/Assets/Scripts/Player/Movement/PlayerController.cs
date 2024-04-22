@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+    public Animator Animator;
     public float gravity = 9.8f;
     public float jumpForce;
     public float speed;
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
         {
             _fallVelocity = -jumpForce;
+            Animator.SetTrigger("Jump");
         }
     }
     private void MovementForseAdd()
@@ -79,18 +80,30 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _moveVector += transform.forward;
+            Animator.SetFloat("FrontSpeed", 1);
         }
         if (Input.GetKey(KeyCode.S))
         {
             _moveVector -= transform.forward;
+            Animator.SetFloat("FrontSpeed", -1);
         }
         if (Input.GetKey(KeyCode.D))
         {
             _moveVector += transform.right;
+            Animator.SetFloat("SideSpeed", -1);
+            Animator.SetFloat("FrontSpeed", 0);
         }
         if (Input.GetKey(KeyCode.A))
         {
             _moveVector -= transform.right;
+            Animator.SetFloat("SideSpeed", 1);
+            Animator.SetFloat("FrontSpeed", 0);
+        }
+
+        if (_moveVector == Vector3.zero)
+        {
+            Animator.SetFloat("FrontSpeed", 0);
+            Animator.SetFloat("SideSpeed", 0);
         }
     } //_moveVector change according to WASD
 
