@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         MovementForseAdd();
         Jump();
-        Run();
         Crouch();
     }
     private void Crouch()
@@ -52,19 +51,6 @@ public class PlayerController : MonoBehaviour
             _isCrouching = false;
         }
     }
-    private void Run()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) && _isCrouching == false)
-        {
-            speed = 6;
-            _isRunning = true;
-        }    
-        else
-        {
-            speed = 3;
-            _isRunning = false;
-        }
-    }
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
@@ -81,6 +67,18 @@ public class PlayerController : MonoBehaviour
         {
             _moveVector += transform.forward;
             Animator.SetFloat("FrontSpeed", 1);
+            if (Input.GetKey(KeyCode.LeftShift) && _isCrouching == false)
+            {
+                Animator.SetBool("IsRunning", true);
+                speed = 6;
+                _isRunning = true;
+            }
+            else
+            {
+                speed = 3;
+                _isRunning = false;
+                Animator.SetBool("IsRunning", false);
+            }
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -104,7 +102,16 @@ public class PlayerController : MonoBehaviour
         {
             Animator.SetFloat("FrontSpeed", 0);
             Animator.SetFloat("SideSpeed", 0);
+            Animator.SetBool("IsRunning", false);
         }
+
+        if (!Input.GetKey(KeyCode.W) && _isRunning == true)
+        {
+            speed = 3;
+            _isRunning = false;
+            Animator.SetBool("IsRunning", false);
+        }
+
     } //_moveVector change according to WASD
 
 
