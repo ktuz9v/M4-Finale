@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float gravity = 9.8f;
     public float jumpForce;
     public float speed;
+    public float RunningTimer = 3;
 
     Vector3 _moveVector;
     float _fallVelocity = 0;
@@ -30,6 +31,17 @@ public class PlayerController : MonoBehaviour
         MovementForseAdd();
         Jump();
         Crouch();
+        TimerUpdate();
+    }
+
+    private void TimerUpdate()
+    {
+        if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            RunningTimer += Time.deltaTime;
+        }
+        if (RunningTimer > 3)
+            RunningTimer = 3;
     }
     private void Crouch()
     {
@@ -67,11 +79,12 @@ public class PlayerController : MonoBehaviour
         {
             _moveVector += transform.forward;
             Animator.SetFloat("FrontSpeed", 1);
-            if (Input.GetKey(KeyCode.LeftShift) && _isCrouching == false)
+            if (Input.GetKey(KeyCode.LeftShift) && _isCrouching == false && RunningTimer > 0)
             {
                 Animator.SetBool("IsRunning", true);
                 speed = 6;
                 _isRunning = true;
+                RunningTimer -= Time.deltaTime;
             }
             else
             {
