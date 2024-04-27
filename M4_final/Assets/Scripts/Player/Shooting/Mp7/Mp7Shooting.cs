@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class Mp7Shooting : MonoBehaviour
 {
@@ -9,6 +7,9 @@ public class Mp7Shooting : MonoBehaviour
     public int AmmoInInventory; 
 
     public Bullet BulletPrefab;
+
+    public TextMeshProUGUI AmmoLeftInventory;
+    public TextMeshProUGUI AmmoLeftInMagText;
 
     private float _shootinTimer;
     private float _fullReloadTimer;
@@ -19,6 +20,18 @@ public class Mp7Shooting : MonoBehaviour
             Timers();
             Shooting();
             Reload();
+        }
+        AmmoLeftInventory.text = AmmoInInventory.ToString();
+        AmmoLeftInMagText.text = MagAmmo.ToString();
+        if (AmmoInInventory <= 0)
+        {
+            AmmoInInventory = 0;
+            AmmoLeftInventory.color = Color.red;
+            AmmoLeftInventory.text = "0";
+        }
+        else
+        {
+            AmmoLeftInventory.color = Color.cyan;
         }
     }
 
@@ -32,6 +45,18 @@ public class Mp7Shooting : MonoBehaviour
             AmmoInInventory -= MagLeftAmmo;
             if (AmmoInInventory < 0)
                 MagAmmo += AmmoInInventory;
+            AmmoLeftInMagText.text = MagAmmo.ToString();
+            AmmoLeftInventory.text = AmmoInInventory.ToString();
+            if (AmmoInInventory <= 0)
+            {
+                AmmoLeftInventory.text = "0";
+                AmmoLeftInventory.color = Color.red;
+                AmmoInInventory = 0;
+            }
+            else
+            {
+                AmmoLeftInventory.color = Color.cyan;
+            }
         }
     }
     private void Timers()
@@ -46,6 +71,15 @@ public class Mp7Shooting : MonoBehaviour
             Instantiate(BulletPrefab, transform.position, transform.rotation);
             _shootinTimer = 0;
             MagAmmo--;
+            AmmoLeftInMagText.text = MagAmmo.ToString();
+        }
+        if (MagAmmo < 10)
+        {
+            AmmoLeftInMagText.color = Color.red;
+        }
+        else
+        {
+            AmmoLeftInMagText.color = Color.cyan;
         }
     }
 

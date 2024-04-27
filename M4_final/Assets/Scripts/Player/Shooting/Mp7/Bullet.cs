@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float Speed;
+    public float Damage;
     private void Start()
     {
         Invoke("Destroy", 5);
