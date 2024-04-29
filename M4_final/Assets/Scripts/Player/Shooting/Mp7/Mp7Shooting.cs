@@ -11,8 +11,8 @@ public class Mp7Shooting : MonoBehaviour
     public TextMeshProUGUI AmmoLeftInventory;
     public TextMeshProUGUI AmmoLeftInMagText;
 
-    private float _shootinTimer;
-    private float _fullReloadTimer;
+    private float _shootinTimer = 10;
+    private float _fullReloadTimer = 10;
     void Update()
     {
         if (!Input.GetKey(KeyCode.LeftShift))
