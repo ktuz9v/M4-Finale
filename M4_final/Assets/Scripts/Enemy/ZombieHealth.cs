@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class GuardHealth : MonoBehaviour
+public class ZombieHealth : MonoBehaviour
 {
     public float Health = 60;
     public Animator Animator;
-    public GuardAI Guard;
+    public ZombieAI Zombie;
     public CapsuleCollider Capsule;
     public NavMeshAgent Navigation;
-    public GameObject Mp7;
 
     bool _isDead;
     float _timeBeforeCorpseDisappear;
@@ -23,11 +20,10 @@ public class GuardHealth : MonoBehaviour
         if (Health <= 0)
         {
             Animator.SetBool("IsDead", true);
-            Guard.enabled = false;
+            Zombie.enabled = false;
             Capsule.enabled = false;
             Navigation.speed = 0;
             _isDead = true;
-            Destroy(Mp7);
         }
         if (_isDead == true)
         {

@@ -147,6 +147,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 60
+  Animator: {fileID: 8897701295490140503}
+  Guard: {fileID: 8897701295514428208}
+  Capsule: {fileID: 8897701295514428214}
+  Navigation: {fileID: 8897701295514428215}
+  Mp7: {fileID: 8627654430065899467}
 --- !u!136 &8897701295514428214
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -280,6 +285,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68a7d3b808e593048b5e60a2f62e31c1, type: 3}
+--- !u!1 &8627654430065899467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 68a7d3b808e593048b5e60a2f62e31c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8897701295988279962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8897701296204060468
 PrefabInstance:
   m_ObjectHideFlags: 0

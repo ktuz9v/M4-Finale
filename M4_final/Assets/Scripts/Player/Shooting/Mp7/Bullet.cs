@@ -27,6 +27,9 @@ public class Bullet : MonoBehaviour
         var guard = other.GetComponent<GuardHealth>();
         if (guard != null)
             guard.TakeDamageGuard(Damage);
+        var zombie = other.GetComponent<ZombieHealth>();
+        if (zombie != null)
+            zombie.TakeDamageGuard(Damage);
     }
     private void Destroy()
     {

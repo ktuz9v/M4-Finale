@@ -13,6 +13,8 @@ public class ZombieAI : MonoBehaviour
     public Transform Player;
     public float Distanse;
 
+    public CapsuleCollider Collider;
+
     public bool IsStanding = false;
 
     bool _isNotised;
@@ -23,6 +25,7 @@ public class ZombieAI : MonoBehaviour
         {
             Walk();
             Attack();
+            Collider.enabled = true;
         }
     }
     public void AttackDamage()
