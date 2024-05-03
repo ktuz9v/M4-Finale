@@ -215,7 +215,7 @@ MonoBehaviour:
   EndObject: {fileID: 103226}
   EndPosition: {x: 0, y: 0, z: 0}
   Generations: 3
-  Duration: 0.05
+  Duration: 0.03
   ChaosFactor: 0.15
   ManualMode: 0
   Rows: 8
