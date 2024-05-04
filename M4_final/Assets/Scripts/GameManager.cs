@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     public void Quit()
     {
         Application.Quit();
@@ -38,5 +42,14 @@ public class GameManager : MonoBehaviour
             AudioListener.volume = 0;
             _soundButton.image.sprite = _soundOffSprite;
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

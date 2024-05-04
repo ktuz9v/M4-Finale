@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float speed;
     public float RunningTimer = 3;
+    public float FallDamage;
 
     Vector3 _moveVector;
     float _fallVelocity = 0;
@@ -126,6 +127,11 @@ public class PlayerController : MonoBehaviour
         }
 
     } //_moveVector change according to WASD
+    public void JumpAnomalyEffect(float Forse)
+    {
+        _fallVelocity = -Forse;
+        Animator.SetTrigger("Jump");
+    }
 
 
     void FixedUpdate()
@@ -135,6 +141,8 @@ public class PlayerController : MonoBehaviour
 
         if (_characterController.isGrounded)
         {
+            if (_fallVelocity > 5)
+                GetComponent<PlayerHealth>().DealDamageToPlayer(FallDamage);
             _fallVelocity = 0;
         } //Grounded check
     }
