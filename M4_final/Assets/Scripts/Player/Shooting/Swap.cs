@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Swap : MonoBehaviour
 {
+    public Camera Camera;
+
     public GameObject Mp7;
     public Mp7Shooting Mp7Shooting;
 
@@ -23,6 +25,8 @@ public class Swap : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            Camera.fieldOfView = 60;
+
             M24.SetActive(false);
             M24Shooting.enabled = false;
             Scope.enabled = false;

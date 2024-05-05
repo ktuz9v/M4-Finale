@@ -2060,6 +2060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfbf6a56fc97fe488d6318238af4a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 4522732153082903401}
   Mp7: {fileID: 3603602353857440125}
   Mp7Shooting: {fileID: 4522732153334169539}
   M24: {fileID: 3603602354511649605}
@@ -2111,6 +2112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CamRot: {fileID: 4522732151903917395}
   _pausePanel: {fileID: 4522732152157523453}
+  _gameplayUI: {fileID: 4522732152342936893}
 --- !u!114 &5872436011526912217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3189,7 +3191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1909655968488576008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3439,7 +3441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.53705585, b: 0, a: 0.105882354}
+  m_Color: {r: 1, g: 0.53705585, b: 0, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &943309501448806340
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132336325475897700}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68b8d069df2c7bc4b9261e189d50dc4f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &943309501448806341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132336325475897700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c894b5e09df7b5240ab21d9bbc3d0f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZombieAI: {fileID: 943309500590007168}
 --- !u!1 &943309500590007173
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +83,7 @@ MonoBehaviour:
   Zombie: {fileID: 943309500590007175}
   Animator: {fileID: 943309501448806340}
   Player: {fileID: 0}
-  Distanse: 5
+  Distanse: 10
   Collider: {fileID: 943309500590007169}
   IsStanding: 0
 --- !u!195 &943309500590007175
@@ -107,38 +139,6 @@ MonoBehaviour:
   Zombie: {fileID: 943309500590007168}
   Capsule: {fileID: 943309500590007169}
   Navigation: {fileID: 943309500590007175}
---- !u!95 &943309501448806340
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132336325475897700}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 68b8d069df2c7bc4b9261e189d50dc4f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &943309501448806341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132336325475897700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c894b5e09df7b5240ab21d9bbc3d0f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ZombieAI: {fileID: 943309500590007168}
 --- !u!1001 &943309500638702645
 PrefabInstance:
   m_ObjectHideFlags: 0

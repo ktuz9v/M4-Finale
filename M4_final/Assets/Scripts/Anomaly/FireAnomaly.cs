@@ -25,10 +25,10 @@ public class FireAnomaly : MonoBehaviour
                 color.a = 0.5f;
             BurnImage.color = color;
         }
-        if (!_isBurning)
+        if (!_isBurning && _isBurning == false)
         {
             Color color = BurnImage.color;
-            color.a -= 0.3f * Time.deltaTime;
+            color.a -= 0.03f * Time.deltaTime;
             if (color.a < 0)
                 color.a = 0;
             BurnImage.color = color;

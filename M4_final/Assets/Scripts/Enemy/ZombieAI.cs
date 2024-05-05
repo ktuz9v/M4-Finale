@@ -30,7 +30,8 @@ public class ZombieAI : MonoBehaviour
     }
     public void AttackDamage()
     {
-        Player.GetComponent<PlayerHealth>().DealDamageToPlayer(Damage);
+        if (Zombie.remainingDistance < 2)
+            Player.GetComponent<PlayerHealth>().DealDamageToPlayer(Damage);
     }
     private void Attack()
     {

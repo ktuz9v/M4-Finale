@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     bool _isRunning;
 
     CharacterController _characterController;
+    CapsuleCollider _capsuleCollider;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private void ComponentAdd()
     {
         _characterController = GetComponent<CharacterController>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
 
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
         {
             _characterController.height = 1;
             _characterController.center = new Vector3(0, 1.2f, 0);
+            _capsuleCollider.height = 1;
+            _capsuleCollider.center = new Vector3(0, 1.2f, 0);
             speed = 1f;
             _isCrouching = true;
         }
@@ -57,6 +61,8 @@ public class PlayerController : MonoBehaviour
         {
             _characterController.height = 1.7f;
             _characterController.center = new Vector3(0, 0.85f, 0);
+            _capsuleCollider.height = 1.7f;
+            _capsuleCollider.center = new Vector3(0, 0.85f, 0);
             if (_isRunning == false)
                 speed = 3f;
             else
@@ -141,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
         if (_characterController.isGrounded)
         {
-            if (_fallVelocity > 5)
+            if (_fallVelocity > 6.5)
                 GetComponent<PlayerHealth>().DealDamageToPlayer(FallDamage);
             _fallVelocity = 0;
         } //Grounded check
