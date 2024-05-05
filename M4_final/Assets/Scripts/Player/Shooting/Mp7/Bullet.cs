@@ -19,15 +19,15 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
-        var player = other.GetComponent<PlayerHealth>();
+        var player = other.gameObject.GetComponent<PlayerHealth>();
         if (player != null)
         {
             player.DealDamageToPlayer(Damage);
         }
-        var guard = other.GetComponent<GuardHealth>();
+        var guard = other.gameObject.GetComponent<GuardHealth>();
         if (guard != null)
             guard.TakeDamageGuard(Damage);
-        var zombie = other.GetComponent<ZombieHealth>();
+        var zombie = other.gameObject.GetComponent<ZombieHealth>();
         if (zombie != null)
             zombie.TakeDamageGuard(Damage);
     }

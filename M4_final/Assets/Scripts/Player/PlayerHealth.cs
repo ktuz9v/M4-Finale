@@ -47,4 +47,11 @@ public class PlayerHealth : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
+    public void AddHealth(float health)
+    {
+        Health += health;
+        if (Health > 100)
+            Health = 100;
+        DrawHealthBar();
+    }
 }

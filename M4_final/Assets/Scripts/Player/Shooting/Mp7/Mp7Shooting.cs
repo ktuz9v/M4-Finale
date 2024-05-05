@@ -87,5 +87,7 @@ public class Mp7Shooting : MonoBehaviour
     public void PickUpAmmoMp7(int Ammo)
     {
         AmmoInInventory += Ammo;
+        if (AmmoInInventory > 180)
+            AmmoInInventory = 180;
     }
 }

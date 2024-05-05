@@ -77,5 +77,7 @@ public class M24Shooting : MonoBehaviour
     public void PickUpAmmoM24(int Ammo)
     {
         AmmoInInventory += Ammo;
+        if (AmmoInInventory > 40)
+            AmmoInInventory = 40;
     }
 }
