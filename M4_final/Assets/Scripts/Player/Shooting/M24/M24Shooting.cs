@@ -13,6 +13,12 @@ public class M24Shooting : MonoBehaviour
 
     private float _shootinTimer = 10;
     private float _fullReloadTimer = 10;
+    private void Start()
+    {
+        AmmoInInventory = PlayerPrefs.GetInt("M24Ammo");
+        MagAmmo = PlayerPrefs.GetInt("M24");
+    }
+
     void Update()
     {
         if (!Input.GetKey(KeyCode.LeftShift))

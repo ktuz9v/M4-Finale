@@ -13,6 +13,12 @@ public class Mp7Shooting : MonoBehaviour
 
     private float _shootinTimer = 10;
     private float _fullReloadTimer = 10;
+    private void Start()
+    {
+        AmmoInInventory = PlayerPrefs.GetInt("Mp7Ammo");
+        MagAmmo = PlayerPrefs.GetInt("Mp7");
+    }
+
     void Update()
     {
         if (!Input.GetKey(KeyCode.LeftShift))
