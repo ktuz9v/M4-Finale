@@ -33,7 +33,7 @@ public class GuardHealth : MonoBehaviour
         {
             _timeBeforeCorpseDisappear += Time.deltaTime;
         }
-        if (_timeBeforeCorpseDisappear > 30)
+        if (_timeBeforeCorpseDisappear > 15)
         {
             Destroy(gameObject);
         }
