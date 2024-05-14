@@ -16,12 +16,22 @@ public class GuardAI : MonoBehaviour
     public Bullet Bullet;
     public Transform Weapon;
 
+    [SerializeField] AudioSource Walk;
+
     float _timeBetweenShots;
     float _reloadTimer;
     int _burstAmmo = 3;
 
     bool _isNotised;
     float _nextCoverPointTimer;
+
+    float _audioStart;
+    float _timeForAudioStart;
+    bool playing;
+    private void Start()
+    {
+        _audioStart = Random.Range(0, 3f);
+    }
     void Update()
     {
         PlayerNotise();
@@ -59,6 +69,12 @@ public class GuardAI : MonoBehaviour
         _nextCoverPointTimer += Time.deltaTime;
         _reloadTimer += Time.deltaTime;
         _timeBetweenShots += Time.deltaTime;
+        _timeForAudioStart += Time.deltaTime;
+        if (_timeForAudioStart > _audioStart && !playing)
+        {
+            Walk.Play();
+            playing = true;
+        }
     }
     private void PatrolAttack()
     {

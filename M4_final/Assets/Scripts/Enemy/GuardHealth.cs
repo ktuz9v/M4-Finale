@@ -12,6 +12,8 @@ public class GuardHealth : MonoBehaviour
     public NavMeshAgent Navigation;
     public GameObject Mp7;
 
+    [SerializeField] AudioSource Walk;
+
     bool _isDead;
     float _timeBeforeCorpseDisappear;
     public void TakeDamageGuard(float Damage)
@@ -28,6 +30,7 @@ public class GuardHealth : MonoBehaviour
             Navigation.speed = 0;
             _isDead = true;
             Destroy(Mp7);
+            Walk.Stop();
         }
         if (_isDead == true)
         {

@@ -18,9 +18,22 @@ public class PlayerController : MonoBehaviour
     CharacterController _characterController;
     CapsuleCollider _capsuleCollider;
 
+    public AudioSource WalkingAudio;
+    bool _audioIsPlaying;
+
+    public AudioSource RunningAudio;
+    bool _isRunningAudio;
+
+    public AudioSource CrouchingAudio;
+    bool _isCrouchingAudio;
+
+    public AudioSource JumpSound;
+
+    float _timeAfterJump;
     void Start()
     {
         ComponentAdd();
+        _timeAfterJump = 20;
     }
     private void ComponentAdd()
     {
@@ -39,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void TimerUpdate()
     {
+        _timeAfterJump += Time.deltaTime;
         if (!Input.GetKey(KeyCode.LeftShift))
         {
             RunningTimer += Time.deltaTime;
@@ -56,6 +70,13 @@ public class PlayerController : MonoBehaviour
             _capsuleCollider.center = new Vector3(0, 1.2f, 0);
             speed = 1f;
             _isCrouching = true;
+            WalkingAudio.Stop();
+            _audioIsPlaying = false;
+            if (!_isCrouchingAudio)
+            {
+                _isCrouchingAudio = true;
+                CrouchingAudio.Play();
+            }
         }
         else
         {
@@ -68,6 +89,8 @@ public class PlayerController : MonoBehaviour
             else
                 speed = 6;
             _isCrouching = false;
+            _isCrouchingAudio = false;
+            CrouchingAudio.Stop();
         }
     }
     private void Jump()
@@ -76,7 +99,22 @@ public class PlayerController : MonoBehaviour
         {
             _fallVelocity = -jumpForce;
             Animator.SetTrigger("Jump");
+            JumpSound.Play();
+            WalkingAudio.Stop();
+            RunningAudio.Stop();
+            CrouchingAudio.Stop();
+            _isCrouchingAudio = true;
+            _isRunningAudio = true;
+            _audioIsPlaying = true;
+            _timeAfterJump = 0;
         }
+        if (_characterController.isGrounded && _timeAfterJump < 1.5f)
+        {
+            _isRunningAudio = false;
+            _isCrouchingAudio = false;
+            _audioIsPlaying = false;
+        }
+
     }
     private void MovementForseAdd()
     {
@@ -92,12 +130,21 @@ public class PlayerController : MonoBehaviour
                 speed = 6;
                 _isRunning = true;
                 RunningTimer -= Time.deltaTime;
+                WalkingAudio.Stop();
+                _audioIsPlaying = false;
+                if (!_isRunningAudio)
+                {
+                    RunningAudio.Play();
+                    _isRunningAudio = true;
+                }
             }
             else
             {
                 speed = 3;
                 _isRunning = false;
                 Animator.SetBool("IsRunning", false);
+                RunningAudio.Stop();
+                _isRunningAudio = false;
             }
         }
         if (Input.GetKey(KeyCode.S))
@@ -123,6 +170,13 @@ public class PlayerController : MonoBehaviour
             Animator.SetFloat("FrontSpeed", 0);
             Animator.SetFloat("SideSpeed", 0);
             Animator.SetBool("IsRunning", false);
+            WalkingAudio.Stop();
+            _audioIsPlaying = false;
+        }
+        else if (!_audioIsPlaying && !_isRunning && !_isCrouching)
+        {
+            WalkingAudio.Play();
+            _audioIsPlaying = true;
         }
 
         if (!Input.GetKey(KeyCode.W) && _isRunning == true)
@@ -130,6 +184,7 @@ public class PlayerController : MonoBehaviour
             speed = 3;
             _isRunning = false;
             Animator.SetBool("IsRunning", false);
+            RunningAudio.Stop();
         }
 
     } //_moveVector change according to WASD
