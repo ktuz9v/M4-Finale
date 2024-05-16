@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using TMPro;
 
 public class M24Shooting : MonoBehaviour
@@ -13,6 +14,10 @@ public class M24Shooting : MonoBehaviour
 
     private float _shootinTimer = 10;
     private float _fullReloadTimer = 10;
+
+    [SerializeField] AudioSource Shot;
+    [SerializeField] AudioSource ReloadSound;
+    [SerializeField] AudioSource CaseBounse;
     private void Start()
     {
         AmmoInInventory = PlayerPrefs.GetInt("M24Ammo");
@@ -53,6 +58,7 @@ public class M24Shooting : MonoBehaviour
                 MagAmmo += AmmoInInventory;
             AmmoLeftInMag.text = MagAmmo.ToString();
             AmmoLeftInventory.text = AmmoInInventory.ToString();
+            ReloadSound.Play();
         }
     }
     private void Timers()
@@ -68,6 +74,8 @@ public class M24Shooting : MonoBehaviour
             _shootinTimer = 0;
             MagAmmo--;
             AmmoLeftInMag.text = MagAmmo.ToString();
+            Shot.Play();
+            StartCoroutine(CaseFalls());
         }
         if (MagAmmo < 3)
         {
@@ -78,7 +86,11 @@ public class M24Shooting : MonoBehaviour
             AmmoLeftInMag.color = Color.cyan;
         }
     }
-
+    IEnumerator CaseFalls()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CaseBounse.Play();
+    }
 
     public void PickUpAmmoM24(int Ammo)
     {

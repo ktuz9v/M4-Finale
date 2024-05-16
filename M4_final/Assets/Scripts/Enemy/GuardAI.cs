@@ -17,6 +17,11 @@ public class GuardAI : MonoBehaviour
     public Transform Weapon;
 
     [SerializeField] AudioSource Walk;
+    [SerializeField] AudioSource Shoot;
+    [SerializeField] AudioSource Shoot1;
+    [SerializeField] AudioSource Shoot2;
+
+    float _timeForAudio;
 
     float _timeBetweenShots;
     float _reloadTimer;
@@ -56,6 +61,15 @@ public class GuardAI : MonoBehaviour
                 Instantiate(Bullet, Weapon.position, Weapon.rotation);
                 _burstAmmo--;
                 _timeBetweenShots = 0;
+                if (_timeForAudio < 0.1f)
+                    Shoot.Play();
+                else if (_timeForAudio >= 0.1f && _timeForAudio < 0.2f)
+                    Shoot1.Play();
+                else
+                {
+                    Shoot2.Play();
+                    _timeForAudio = 0;
+                }
             }
         }
         if (_burstAmmo <= 0)
@@ -70,6 +84,7 @@ public class GuardAI : MonoBehaviour
         _reloadTimer += Time.deltaTime;
         _timeBetweenShots += Time.deltaTime;
         _timeForAudioStart += Time.deltaTime;
+        _timeForAudio += Time.deltaTime;
         if (_timeForAudioStart > _audioStart && !playing)
         {
             Walk.Play();

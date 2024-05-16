@@ -11,6 +11,8 @@ public class ElectricAnomaly : MonoBehaviour
     public GameObject Anomaly3;
 
     float _timer;
+
+    [SerializeField] AudioSource Attack;
     void Update()
     {
         _timer += Time.deltaTime;
@@ -31,6 +33,7 @@ public class ElectricAnomaly : MonoBehaviour
             {
                 player.DealDamageToPlayer(Damage);
                 _timer = 0;
+                Attack.Play();
             }
             Anomaly.SetActive(false);
             Anomaly1.SetActive(false);

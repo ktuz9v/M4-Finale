@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float RunningTimer = 3;
     public float FallDamage;
 
+    [SerializeField] AudioSource Fall;
+
     Vector3 _moveVector;
     float _fallVelocity = 0;
     bool _isCrouching;
@@ -203,7 +205,10 @@ public class PlayerController : MonoBehaviour
         if (_characterController.isGrounded)
         {
             if (_fallVelocity > 6.5)
+            {
                 GetComponent<PlayerHealth>().DealDamageToPlayer(FallDamage);
+                Fall.Play();
+            }
             _fallVelocity = 0;
         } //Grounded check
     }

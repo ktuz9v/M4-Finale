@@ -13,6 +13,14 @@ public class Mp7Shooting : MonoBehaviour
 
     private float _shootinTimer = 10;
     private float _fullReloadTimer = 10;
+
+    [SerializeField] AudioSource Mp7Audio;
+    [SerializeField] AudioSource Mp7Audio1;
+    [SerializeField] AudioSource Mp7Audio2;
+    [SerializeField] AudioSource Mp7Audio3;
+    [SerializeField] AudioSource Mp7Reload;
+
+    float _timeForAudio;
     private void Start()
     {
         AmmoInInventory = PlayerPrefs.GetInt("Mp7Ammo");
@@ -53,6 +61,7 @@ public class Mp7Shooting : MonoBehaviour
                 MagAmmo += AmmoInInventory;
             AmmoLeftInMagText.text = MagAmmo.ToString();
             AmmoLeftInventory.text = AmmoInInventory.ToString();
+            Mp7Reload.Play();
             if (AmmoInInventory <= 0)
             {
                 AmmoLeftInventory.text = "0";
@@ -69,6 +78,7 @@ public class Mp7Shooting : MonoBehaviour
     {
         _shootinTimer += Time.deltaTime;
         _fullReloadTimer += Time.deltaTime;
+        _timeForAudio += Time.deltaTime;
     }
     private void Shooting()
     {
@@ -78,6 +88,17 @@ public class Mp7Shooting : MonoBehaviour
             _shootinTimer = 0;
             MagAmmo--;
             AmmoLeftInMagText.text = MagAmmo.ToString();
+            if (_timeForAudio < 0.07f)
+                Mp7Audio.Play();
+            else if (0.07f <= _timeForAudio && _timeForAudio < 0.14f)
+                Mp7Audio1.Play();
+            else if (0.14f <= _timeForAudio && _timeForAudio < 0.21f)
+                Mp7Audio2.Play();
+            else if (0.21f <= _timeForAudio)
+            {
+                Mp7Audio3.Play();
+                _timeForAudio = 0;
+            }
         }
         if (MagAmmo < 10)
         {

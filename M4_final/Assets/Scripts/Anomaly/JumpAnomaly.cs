@@ -6,6 +6,8 @@ public class JumpAnomaly : MonoBehaviour
 {
     public float Forse;
     public float Damage;
+
+    [SerializeField] AudioSource Audio;
     private void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<PlayerController>();
@@ -14,6 +16,7 @@ public class JumpAnomaly : MonoBehaviour
         {
             player.GetComponent<PlayerController>().JumpAnomalyEffect(Forse);
             playerHealth.GetComponent<PlayerHealth>().DealDamageToPlayer(Damage);
+            Audio.Play();
         }
     }
 }
