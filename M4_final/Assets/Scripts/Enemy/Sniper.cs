@@ -8,6 +8,8 @@ public class Sniper : MonoBehaviour
     public GameObject Player;
     public Bullet Bullet;
 
+    [SerializeField] AudioSource Shot;
+
     float _timeForShot;
     float _reload;
     bool _isNotised;
