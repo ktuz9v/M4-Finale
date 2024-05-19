@@ -9,7 +9,7 @@ public class CloseMap : MonoBehaviour
     {
         var player = other.GetComponent<PlayerController>();
         if (player != null)
-            CloseMap_.SetActive(false);
+            Destroy(CloseMap_);
     }
 
 }
