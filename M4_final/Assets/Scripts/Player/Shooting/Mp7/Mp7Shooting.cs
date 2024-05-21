@@ -51,7 +51,7 @@ public class Mp7Shooting : MonoBehaviour
 
     private void Reload()
     {
-        if (MagAmmo < 1 && AmmoInInventory > 0 || Input.GetKeyDown(KeyCode.R) && AmmoInInventory > 0)
+        if (MagAmmo < 1 && AmmoInInventory > 0 || Input.GetKeyDown(KeyCode.R) && AmmoInInventory > 0 && MagAmmo != 45)
         {
             int MagLeftAmmo = 45 - MagAmmo;
             MagAmmo = 45;

@@ -12,6 +12,8 @@ public class BossZombieAI : MonoBehaviour
     public Transform Player;
     public float Distanse;
 
+    [SerializeField] GameObject RunMessage;
+
     bool _isNotised;
     void Update()
     {
@@ -44,6 +46,11 @@ public class BossZombieAI : MonoBehaviour
             if (Hit.collider.gameObject == Player.gameObject)
             {
                 _isNotised = true;
+                RunMessage.SetActive(true);
+            }
+            else
+            {
+                RunMessage.SetActive(false);
             }
     }
 }
