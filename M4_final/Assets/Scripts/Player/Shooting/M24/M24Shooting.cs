@@ -48,7 +48,7 @@ public class M24Shooting : MonoBehaviour
 
     private void Reload()
     {
-        if (MagAmmo < 1 && AmmoInInventory > 0 || Input.GetKeyDown(KeyCode.R) && AmmoInInventory > 0)
+        if (MagAmmo < 1 && AmmoInInventory > 0 || Input.GetKeyDown(KeyCode.R) && AmmoInInventory > 0 && MagAmmo != 8)
         {
             int MagLeftAmmo = 8 - MagAmmo;
             MagAmmo = 8;
