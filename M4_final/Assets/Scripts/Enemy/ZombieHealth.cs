@@ -8,6 +8,7 @@ public class ZombieHealth : MonoBehaviour
     public ZombieAI Zombie;
     public CapsuleCollider Capsule;
     public NavMeshAgent Navigation;
+    [SerializeField] AudioSource Idle;
 
     bool _isDead;
     float _timeBeforeCorpseDisappear;
@@ -24,12 +25,13 @@ public class ZombieHealth : MonoBehaviour
             Capsule.enabled = false;
             Navigation.speed = 0;
             _isDead = true;
+            Idle.Stop();
         }
         if (_isDead == true)
         {
             _timeBeforeCorpseDisappear += Time.deltaTime;
         }
-        if (_timeBeforeCorpseDisappear > 30)
+        if (_timeBeforeCorpseDisappear > 15)
         {
             Destroy(gameObject);
         }

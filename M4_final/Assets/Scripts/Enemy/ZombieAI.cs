@@ -18,6 +18,10 @@ public class ZombieAI : MonoBehaviour
     public bool IsStanding = false;
 
     bool _isNotised;
+
+    [SerializeField] AudioSource ZombieIdle;
+    [SerializeField] AudioSource ZombieAttack;
+    bool _isPlaying;
     void Update()
     {
         Notise();
@@ -32,11 +36,19 @@ public class ZombieAI : MonoBehaviour
     {
         if (Zombie.remainingDistance < 2)
             Player.GetComponent<PlayerHealth>().DealDamageToPlayer(Damage);
+        _isPlaying = false;
     }
     private void Attack()
     {
         if (Zombie.remainingDistance < 2)
+        {
             Animator.SetTrigger("Attack");
+            if (_isPlaying == false)
+            {
+                _isPlaying = true;
+                ZombieAttack.Play();
+            }
+        }
     }
     private void Walk()
     {
@@ -44,10 +56,11 @@ public class ZombieAI : MonoBehaviour
     }
     private void Notise()
     {
-        if (Vector3.Distance(transform.position, Player.position) < Distanse)
+        if (Vector3.Distance(transform.position, Player.position) < Distanse && _isNotised == false)
         {
             Animator.SetTrigger("Awake");
             _isNotised = true;
+            ZombieIdle.Play();
         }
     }
 }

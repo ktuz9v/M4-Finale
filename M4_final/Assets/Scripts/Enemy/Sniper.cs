@@ -29,6 +29,7 @@ public class Sniper : MonoBehaviour
             {
                 Instantiate(Bullet, transform.position, transform.rotation);
                 _reload = 0;
+                Shot.Play();
             }
         }
     }
