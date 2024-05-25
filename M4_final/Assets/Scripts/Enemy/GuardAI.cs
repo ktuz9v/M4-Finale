@@ -13,7 +13,7 @@ public class GuardAI : MonoBehaviour
     public float FOV;
     public GameObject Player;
 
-    public Bullet Bullet;
+    public EnemyBullet Bullet;
     public Transform Weapon;
 
     [SerializeField] AudioSource Walk;

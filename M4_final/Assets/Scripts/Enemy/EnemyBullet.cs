@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float Speed;
     public float Damage;
@@ -15,19 +15,11 @@ public class Bullet : MonoBehaviour
     {
         transform.position += transform.forward * Time.deltaTime * Speed;
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        var guard = other.gameObject.GetComponent<GuardHealth>();
-        if (guard != null)
-        {
-            guard.TakeDamageGuard(Damage);
-        }
-        var zombie = other.gameObject.GetComponent<ZombieHealth>();
-        if (zombie != null)
-        {
-            zombie.TakeDamageGuard(Damage);
-        }
+        var player = other.GetComponent<PlayerHealth>();
+        if (player != null)
+            player.DealDamageToPlayer(Damage);
         Destroy();
     }
     private void Destroy()

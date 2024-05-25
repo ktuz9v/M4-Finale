@@ -136,7 +136,7 @@ MonoBehaviour:
   - {fileID: 0}
   FOV: 85
   Player: {fileID: 0}
-  Bullet: {fileID: 8652770432726864426, guid: a54754e79e2b31048898b63ea44d6bd1, type: 3}
+  Bullet: {fileID: -4380175157879644015, guid: a54754e79e2b31048898b63ea44d6bd1, type: 3}
   Weapon: {fileID: 8897701295704438254}
   Walk: {fileID: 8930338208722433150}
   Shoot: {fileID: 8084420723885424603}
