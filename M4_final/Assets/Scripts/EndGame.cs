@@ -16,7 +16,7 @@ public class EndGame : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         EndGameCamera.SetActive(true);
-        Player.SetActive(false);
+        Destroy(Player);
         Train.SetDestination(FinalPoint.transform.position);
         Costil.SetActive(false);
         Metro.Stop();
